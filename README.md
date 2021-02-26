@@ -1,5 +1,5 @@
 # wormax-client
-Incomplete interface to interact with wormax api and game servers
+Incomplete interface to interact with [wormax](https://wormax.io) api and game servers
 
 ### Contributions
 
