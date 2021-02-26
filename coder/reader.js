@@ -41,13 +41,11 @@ class MiniReader {
         if (vi) return (0 - (out & 1)) ^ (out >>> 1);
         return out
     }
-    utf8(len) {
-        if (typeof len === 'undefined') len = this.vu()
+    utf8(len=this.vu()) {
         return new TextDecoder().decode(this.buffer.subarray(this.at, this.at += len));
     }
-    array(read) {
-        let arr = []
-        let length = arr.length = this.vu();
+    array(read, length=this.vu()) {
+        let arr = Array(length);
         for (let i = 0; i < length; i++) {
             arr[i] = read.call(this)
         }
