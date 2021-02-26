@@ -1,3 +1,5 @@
+// Beware, this file is overcomplicated
+
 class Cookie {
     constructor(str) {
         this.key = str.slice(0, str.indexOf('='))
