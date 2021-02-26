@@ -25,8 +25,10 @@ class SocketClient extends EventEmitter {
     }
     _react() {
         this._socket.on('open', () => {
-            console.log('Socket opened. Sending init packet');
             const { core } = this._initData;
+
+            this.emit('socket-open');
+
             this.send().u8(0xA0, 0xE1, 0xBE, 0x84, 0x38).u16(quickU16Swap(core.length)).utf8(core, 1).done();
         });
 
@@ -43,12 +45,11 @@ class SocketClient extends EventEmitter {
         })
 
         this._socket.on('error', (err) => {
-            console.log('SOCKET ERR ' + err)
+            this.emit('socket-error', err);
         })
 
-        this._socket.on('close', () => {
-            // console.log('Socket close.')
-            this.emit('close')
+        this._socket.on('close', (code) => {
+            this.emit('close', code);
         })
     }
     close() {
