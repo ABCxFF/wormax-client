@@ -8,7 +8,7 @@ module.exports = class WriterSending extends Writer {
     }
     done() {
         const buf = this.write();
-        // console.log('Sending ' + new TextDecoder().decode(new Uint8Array(buf)))
+
         return this._socket.send(buf)
     }
 }
