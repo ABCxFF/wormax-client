@@ -4,7 +4,15 @@ const { Cookie, CookieList } = require('./cookies');
 const { Writer, Reader } = require('../coder/index');
 
 
+// Parties don't work yet
 
+
+/*
+    After looking back on this file with some more knowledge on the overall protocol,
+    there are things that can  be improved, like  not hardcoding the bytes in the api
+    requests. Someone can fix this if they want.
+
+*/
 class APIClient {
     constructor(headerConsts = config.headers, options) {
         this._constHeaders = headerConsts === 'default' ? config.headers : headerConsts;
@@ -20,7 +28,7 @@ class APIClient {
 
         if (buf[0] !== successCode) {
 
-            throw new Error(new TextDecoder().decode(buf) + ' :: ' + Error().stack)
+            throw new Error(new TextDecoder().decode(buf) + ' :: ' + Error().stack); 
         } else return false
     }
 
@@ -75,7 +83,6 @@ class APIClient {
                 APIClient.checkErr(buf, 0x00)
 
                 this._sharePerm = true;
-                // return new Promise(r => setTimeout(r, 2000));
             }).catch(err => {
                 throw new Error('in request `triggerSharePerms` : ' + err.message)
             })
