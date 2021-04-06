@@ -10,8 +10,8 @@ This project is no longer being maintained. If you make any advancements in reve
 
 ```js
 
-const SocketClient = require('../socket/index')
-const APIClient = require('../api/index');
+const SocketClient = require('./socket')
+const APIClient = require('./api');
 
 const client = new APIClient('default', { lang: 'en', party: '' })
 
