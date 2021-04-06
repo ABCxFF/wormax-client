@@ -16,7 +16,7 @@ const APIClient = require('../api/index');
 const client = new APIClient('default', { lang: 'en', party: '' })
 
 client.recieveInitCookies()
-  .then(() => client.getServersByRegion(region))
+  .then(() => client.getServersByRegion('US'))
   .then((servers) => client.getSpawnData(servers[0].key, 'LB Bot'))
   .then((data) => {
     const ws = new SocketClient(data, client.cookies);
